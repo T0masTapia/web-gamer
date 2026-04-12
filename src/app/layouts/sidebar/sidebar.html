@@ -1,0 +1,61 @@
+<div class="sidebar shadow d-flex flex-column justify-content-between" [class.closed]="!isOpen">
+
+  <div class="sidebar-top-section w-100">
+    <div class="logo-area py-4 d-flex justify-content-center">
+      <i class="fa-solid fa-gamepad text-info fs-2">WebGamer</i>
+    </div>
+
+    <ul class="nav flex-column mt-2">
+      <li class="nav-item">
+        <a routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"
+          class="nav-link text-white d-flex align-items-center py-3">
+          <div class="icon-box"><i class="fa-solid fa-house"></i></div>
+          <span class="label-text text-nowrap">Home</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/cart" routerLinkActive="active-link" class="nav-link text-white d-flex align-items-center py-3">
+
+          <div class="icon-box position-relative">
+            <i class="fa-solid fa-cart-shopping"></i>
+
+            @if (cartCount() > 0) {
+            <span class="position-absolute badge rounded-pill bg-danger">
+              {{ cartCount() }}
+            <span class="visually-hidden">productos en el carrito</span>
+            </span>
+            }
+          </div>
+
+          <span class="label-text text-nowrap ms-2">Carrito</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/favorites" routerLinkActive="active-link"
+          class="nav-link text-white d-flex align-items-center py-3">
+          <div class="icon-box"><i class="fa-solid fa-heart"></i></div>
+          <span class="label-text text-nowrap">Favoritos</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="sidebar-bottom-section w-100 mb-4">
+    <ul class="nav flex-column border-top border-secondary pt-3">
+      <li class="nav-item">
+        <a routerLink="/profile" routerLinkActive="active-link"
+          class="nav-link text-white d-flex align-items-center py-3">
+          <div class="icon-box"><i class="fa-solid fa-user"></i></div>
+          <span class="label-text text-nowrap">Mi Perfil</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/login" routerLinkActive="active-link"
+          class="nav-link text-white d-flex align-items-center py-3">
+          <div class="icon-box text-danger"><i class="fa-solid fa-right-from-bracket"></i></div>
+          <span class="label-text text-nowrap">Salir</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

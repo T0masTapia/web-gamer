@@ -1,0 +1,220 @@
+<a routerLink="/" class="btn-back shadow">
+    <i class="fa-solid fa-arrow-left"></i>
+    <span>Volver al catálogo</span>
+</a>
+
+<div class="hero-layout">
+    <div class="hero-banner"
+        [style.backgroundImage]="'linear-gradient(to bottom, transparent, #0d0d0d), url(' + game?.img + ')'">
+
+        <div class="hero-info container">
+            <span class="badge bg-primary mb-2 px-3 py-2 fs-6">{{ game?.genre }}</span>
+            <h1 class="display-1 fw-bold text-white">{{ game?.title }}</h1>
+            <p class="fs-4 text-white-50 mb-4">{{ game?.platform }}</p>
+
+            <div class="d-flex align-items-center gap-3">
+                <div class="btn-group">
+                    <span class="price-badge">${{ game?.price }}</span>
+                    <!-- Boton Comprar -->
+                    <button class="btn btn-info" (click)="addToCart()">
+                        <i class="fa-solid fa-cart-shopping me-2"></i> COMPRAR AHORA
+                    </button>
+                </div>
+
+                <!-- Boton Favoritos -->
+                <button class="btn btn-lg rounded-circle" [class.btn-danger]="isFavorite"
+                    [class.btn-outline-light]="!isFavorite" (click)="toggleFavorite()">
+
+                    <i class="fa-heart" [class.fa-solid]="isFavorite" [class.fa-regular]="!isFavorite"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5 pb-5">
+        <div class="row g-5">
+            <div class="col-lg-8">
+                <div class="detail-section mb-5">
+                    <h3 class="text-info mb-3">Resumen</h3>
+                    <p class="fs-5 text-white-50 lh-lg">{{ game?.description }}</p>
+                </div>
+
+                <div class="video-section mb-5">
+                    <h3 class="text-info mb-4">Tráiler Oficial</h3>
+
+                    @if (game?.video) {
+                    <div class="ratio ratio-16x9 shadow-lg rounded-4 overflow-hidden border border-secondary bg-black">
+                        @if (game?.video.includes('youtube.com') || game?.video.includes('youtu.be')) {
+                        <iframe [src]="safeVideoUrl" allowfullscreen></iframe>
+                        } @else {
+                        <video [src]="game?.video" controls class="w-100 h-100"></video>
+                        }
+                    </div>
+                    } @else {
+                    <div class="youtube-fallback p-5 rounded-4 text-center border border-secondary bg-dark shadow-sm">
+                        <div class="mb-3">
+                            <i class="fa-brands fa-youtube text-danger display-1"></i>
+                        </div>
+                        <h4 class="text-white mb-2">Tráiler no disponible en el servidor</h4>
+                        <p class="text-white-50 mb-4 small">No encontramos un clip directo, pero puedes buscarlo en
+                            YouTube con un clic.</p>
+
+                        <a [href]="'https://www.youtube.com/results?search_query=' + game?.title + ' official trailer'"
+                            target="_blank" class="btn btn-danger btn-lg px-5 rounded-pill shadow">
+                            <i class="fa-solid fa-magnifying-glass me-2"></i> Buscar en YouTube
+                        </a>
+                    </div>
+                    }
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="sticky-top" style="top: 100px;">
+                    <div class="bg-dark p-4 rounded-4 border border-secondary shadow">
+                        <h5 class="text-white mb-4 border-bottom border-secondary pb-2">Ficha Técnica</h5>
+
+                        <div class="mb-3">
+                            <small class="text-secondary d-block">Plataforma</small>
+                            <span class="text-white fw-bold">{{ game?.platform }}</span>
+                        </div>
+
+                        <div class="mb-3">
+                            <small class="text-secondary d-block">Género</small>
+                            <span class="text-white fw-bold">{{ game?.genre }}</span>
+                        </div>
+
+                        <div class="mb-3">
+                            <small class="text-secondary d-block">Estado</small>
+                            <span class="badge bg-success">Disponible</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @if (game?.requirements) {
+        <div class="requirements-container mt-5 pt-5 border-top border-secondary">
+            <h3 class="text-info mb-5 fw-bold text-uppercase tracking-wider">
+                <i class="fa-solid fa-microchip me-2"></i> Especificaciones de PC
+            </h3>
+
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="spec-card p-4 rounded-4 h-100 border border-secondary bg-dark">
+                        <h5 class="text-white-50 mb-4 fw-bold">REQUISITOS MÍNIMOS</h5>
+
+                        @if (game?.requirements.minimum.os !== 'No especificado') {
+                        <div class="spec-item d-flex align-items-start mb-3">
+                            <i class="fa-solid fa-window-restore text-info mt-1 me-3"></i>
+                            <div>
+                                <small class="text-secondary d-block">SISTEMA OPERATIVO</small>
+                                <span class="text-white">{{ game?.requirements.minimum.os }}</span>
+                            </div>
+                        </div>
+                        }
+
+                        @if (game?.requirements.minimum.cpu !== 'No especificado') {
+                        <div class="spec-item d-flex align-items-start mb-3">
+                            <i class="fa-solid fa-microchip text-info mt-1 me-3"></i>
+                            <div>
+                                <small class="text-secondary d-block">PROCESADOR (CPU)</small>
+                                <span class="text-white">{{ game?.requirements.minimum.cpu }}</span>
+                            </div>
+                        </div>
+                        }
+
+                        @if (game?.requirements.minimum.ram !== 'No especificado') {
+                        <div class="spec-item d-flex align-items-start mb-3">
+                            <i class="fa-solid fa-memory text-info mt-1 me-3"></i>
+                            <div>
+                                <small class="text-secondary d-block">MEMORIA (RAM)</small>
+                                <span class="text-white">{{ game?.requirements.minimum.ram }}</span>
+                            </div>
+                        </div>
+                        }
+
+                        @if (game?.requirements.minimum.gpu !== 'No especificado') {
+                        <div class="spec-item d-flex align-items-start">
+                            <i class="fa-solid fa-server text-info mt-1 me-3"></i>
+                            <div>
+                                <small class="text-secondary d-block">GRÁFICOS (GPU)</small>
+                                <span class="text-white">{{ game?.requirements.minimum.gpu }}</span>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="spec-card p-4 rounded-4 h-100 border border-info-subtle bg-dark shadow-info">
+                        <h5 class="text-info mb-4 fw-bold">REQUISITOS RECOMENDADOS</h5>
+                        <div class="spec-item d-flex align-items-start mb-3">
+                            <i class="fa-solid fa-window-restore text-info mt-1 me-3"></i>
+                            <div>
+                                <small class="text-secondary d-block">SISTEMA OPERATIVO</small>
+                                <span class="text-white">{{ game?.requirements.recommended.os }}</span>
+                            </div>
+                        </div>
+                        <div class="spec-item d-flex align-items-start mb-3">
+                            <i class="fa-solid fa-microchip text-info mt-1 me-3"></i>
+                            <div>
+                                <small class="text-secondary d-block">PROCESADOR (CPU)</small>
+                                <span class="text-white">{{ game?.requirements.recommended.cpu }}</span>
+                            </div>
+                        </div>
+                        <div class="spec-item d-flex align-items-start mb-3">
+                            <i class="fa-solid fa-memory text-info mt-1 me-3"></i>
+                            <div>
+                                <small class="text-secondary d-block">MEMORIA (RAM)</small>
+                                <span class="text-white">{{ game?.requirements.recommended.ram }}</span>
+                            </div>
+                        </div>
+                        <div class="spec-item d-flex align-items-start">
+                            <i class="fa-solid fa-server text-info mt-1 me-3"></i>
+                            <div>
+                                <small class="text-secondary d-block">GRÁFICOS (GPU)</small>
+                                <span class="text-white">{{ game?.requirements.recommended.gpu }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+    <div class="popover-overlay" [class.show]="showCartModal" (click)="closeModal()"></div>
+    <div class="cart-confirm-popover" [class.show]="showCartModal">
+        <button class="btn-close-modal" (click)="closeModal()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="popover-header">
+            <i class="fa-solid fa-circle-check text-info"></i>
+            <span>Añadido al carrito</span>
+        </div>
+
+        <div class="popover-body">
+            <img [src]="game?.img" alt="Miniatura" class="mini-img">
+            <div class="mini-info">
+                <p class="mini-title">{{ game?.title }}</p>
+                <p class="mini-price text-info">${{ game?.price }}</p>
+            </div>
+        </div>
+
+        <div class="popover-footer">
+            <button class="btn-continue" (click)="showCartModal = false">
+                Seguir explorando
+            </button>
+            <a routerLink="/cart" class="btn-go-cart">
+                Ver mi carrito
+            </a>
+        </div>
+    </div>
+
+    <a routerLink="/cart" routerLinkActive="active-link" class="floating-cart shadow-lg"
+        [class.has-items]="cartCount() > 0">
+        <i class="fa-solid fa-cart-shopping"></i>
+        @if (cartCount() > 0) {
+        <span class="cart-badge">{{ cartCount() }}</span>
+        }
+    </a>
+</div>

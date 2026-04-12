@@ -1,0 +1,13 @@
+<div class="card h-100 bg-dark text-white border-secondary position-relative" [routerLink]="['/game', id()]" style="cursor: pointer;">
+  
+  <button class="btn-fav" (click)="toggleFav($event)">
+    <i class="fa-heart" [class.fa-solid]="isFav" [class.fa-regular]="!isFav"></i>
+  </button>
+
+  <img [src]="img()" class="card-img-top" [alt]="title()" style="height: 180px; object-fit: cover;">
+
+  <div class="card-body d-flex flex-column">
+    <h5 class="card-title text-truncate">{{ title() }}</h5>
+    <p class="card-text text-secondary mb-0">{{ platform() }}</p>
+  </div>
+</div>

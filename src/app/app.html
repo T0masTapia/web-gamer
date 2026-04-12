@@ -1,0 +1,24 @@
+<app-sidebar class="d-none d-md-block" (sidebarToggle)="onSidebarToggle($event)" />
+
+<div class="content" [class.shift]="sidebarOpen()">
+  <router-outlet></router-outlet>
+</div>
+
+<nav class="bottom-nav d-md-none">
+  <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-item">
+    <i class="fa-solid fa-house"></i>
+    <span>Home</span>
+  </a>
+  <a routerLink="/cart" routerLinkActive="active" class="nav-item">
+    <i class="fa-solid fa-cart-shopping"></i>
+    <span>Carrito</span>
+  </a>
+  <a routerLink="/favorites" routerLinkActive="active" class="nav-item">
+    <i class="fa-solid fa-heart"></i>
+    <span>Favs</span>
+  </a>
+  <a routerLink="/profile" routerLinkActive="active" class="nav-item">
+    <i class="fa-solid fa-user"></i>
+    <span>Perfil</span>
+  </a>
+</nav>

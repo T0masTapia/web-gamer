@@ -1,0 +1,84 @@
+.content {
+  /* Mantiene tu lógica de sidebar */
+  margin-left: 50px; 
+  transition: margin-left 0.3s ease;
+  
+  /* Espacio interno para que el buscador no toque el techo */
+  padding: 30px; 
+  background-color: #0d0d0d; /* Fondo oscuro total */
+  min-height: 100vh;
+}
+
+.content.shift {
+  margin-left: 250px; 
+}
+
+/* SEARCH BOX */
+
+/* Contenedor para dar espacio */
+.search-area {
+  width: 100%;
+  display: flex;
+  margin-top: 20px;
+}
+
+.custom-search-box {
+  width: 100%;
+  max-width: 450px;
+  position: relative;
+}
+
+.search-inner {
+  display: flex;
+  align-items: center;
+  background: #1a1a1a; /* Gris muy oscuro */
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 12px 18px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.search-icon {
+  color: #00bcd4; /* Color cian para destacar */
+  font-size: 1.1rem;
+  margin-right: 15px;
+}
+
+.main-input {
+  background: transparent;
+  border: none;
+  color: white;
+  outline: none;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+}
+
+.main-input::placeholder {
+  color: #666;
+}
+
+/* EFECTO DE LUZ AL HACER CLIC */
+.custom-search-box:focus-within .search-inner {
+  border-color: #00bcd4;
+  background: #222;
+  box-shadow: 0 0 15px rgba(0, 188, 212, 0.3);
+  transform: scale(1.02); /* Se agranda un poquito */
+}
+
+/* Línea de brillo en la parte inferior (Opcional para extra detalle) */
+.glow-line {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #00bcd4;
+  transition: all 0.4s ease;
+  transform: translateX(-50%);
+  box-shadow: 0 0 10px #00bcd4;
+}
+
+.custom-search-box:focus-within .glow-line {
+  width: 80%;
+}

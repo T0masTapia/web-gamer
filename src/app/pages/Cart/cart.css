@@ -1,0 +1,94 @@
+/* Contenedor principal con la lógica de desplazamiento del sidebar */
+.content {
+    background-color: #0d0d0d;
+    min-height: 100vh;
+    padding: 2rem;
+    margin-left: 60px; /* Ancho cerrado del sidebar */
+    transition: margin-left 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    color: white;
+}
+
+.content.shift {
+    margin-left: 250px; /* Ancho abierto del sidebar */
+}
+
+/* Tarjeta de cada item del carrito */
+.list-group-item {
+    transition: background 0.2s ease;
+    border-color: #333 !important;
+}
+
+.list-group-item:hover {
+    background: #1a1a1a !important;
+}
+
+/* Imagen del juego en el carrito */
+.list-group-item img {
+    border: 1px solid #444;
+    transition: transform 0.3s ease;
+}
+
+.list-group-item:hover img {
+    transform: scale(1.05);
+    border-color: #00bcd4;
+}
+
+/* El "Resumen de Compra" (Sticky para que te siga al hacer scroll) */
+.col-lg-4 .card {
+    position: sticky;
+    top: 100px;
+    background: #141414 !important;
+    border: 1px solid #00bcd4 !important;
+    box-shadow: 0 0 15px rgba(0, 188, 212, 0.2);
+}
+
+/* Badge de precio */
+.text-info {
+    color: #00bcd4 !important;
+    text-shadow: 0 0 10px rgba(0, 188, 212, 0.3);
+}
+
+/* Botón de finalizar compra */
+.btn-info {
+    background-color: #00bcd4;
+    border: none;
+    color: #0d0d0d;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.btn-info:hover {
+    background-color: #008ba3;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 188, 212, 0.4);
+}
+
+/* Botón de eliminar (basura) */
+.btn-outline-danger {
+    border-color: #dc354566;
+    color: #dc3545;
+}
+
+.btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Estado vacío */
+.text-white-50 {
+    letter-spacing: 1px;
+}
+
+.opacity-25 {
+    opacity: 0.1 !important;
+}
+
+/* Animación para que los items aparezcan suavemente */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.list-group-item {
+    animation: fadeIn 0.4s ease forwards;
+}

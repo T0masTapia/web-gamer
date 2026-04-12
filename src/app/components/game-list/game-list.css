@@ -1,0 +1,24 @@
+/* 
+.games {
+    display: grid;
+    /* Esto define 4 columnas de igual tamaño (1fr cada una) 
+    grid-template-columns: repeat(4, 1fr); 
+    /* El espacio entre las columnas y las filas 
+    gap: 40px; 
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Responsividad: Si el espacio se reduce (por el sidebar o móvil) 
+@media (max-width: 1100px) {
+    .games {
+        grid-template-columns: repeat(3, 1fr); /* 3 columnas 
+    }
+}
+
+@media (max-width: 800px) {
+    .games {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas 
+    }
+}*/

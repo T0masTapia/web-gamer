@@ -1,0 +1,160 @@
+/* --- CONFIGURACIÓN BASE --- */
+.sidebar {
+    width: 250px;
+    background: #141414;
+    color: #f0f0f0;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: width 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    overflow-x: hidden;
+    
+    /* Flexbox para separar secciones (arriba y abajo) */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* --- ESTADO CERRADO --- */
+.sidebar.closed {
+    width: 60px; /* Ancho exacto para que el icon-box de 60px encaje */
+}
+
+/* --- LISTA DE NAVEGACIÓN --- */
+.nav-icons {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    width: 100%;
+}
+
+.nav-icons li a {
+    text-decoration: none;
+    color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    transition: background 0.2s ease;
+    width: 100%;
+    /* Quitamos el padding lateral para que el icon-box mande */
+    padding: 10px 0; 
+}
+
+.nav-icons li a:hover {
+    background: rgba(0, 188, 212, 0.1); /* Efecto cian sutil */
+    color: #00bcd4;
+}
+
+/* --- EL CONTENEDOR DEL ICONO (LA CLAVE) --- */
+.icon-box {
+    min-width: 60px; /* Debe ser igual al ancho del sidebar cerrado */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    color: #00bcd4; /* Color cian gamer */
+    position: relative;
+}
+
+.icon-box .badge {
+    transform: none !important; /* Desactivamos el translate de Bootstrap que suele fallar en menús laterales */
+    top: 5px !important;       /* Ajusta hacia arriba/abajo */
+    left: 33px !important;     /* Ajusta hacia los lados (el icono suele estar en el centro, cerca de los 30px) */
+    padding: 0.25em 0.45em !important;
+    font-size: 0.6rem !important;
+    border: 2px solid #141414; /* Mismo color que el fondo del sidebar para que se vea limpio */
+    line-height: 1;
+}
+
+/* --- EL TEXTO --- */
+.label-text {
+    opacity: 1;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+/* Comportamiento al cerrar */
+.sidebar.closed .label-text {
+    opacity: 0;
+    display: none; /* Lo sacamos del flujo para que no estorbe el centrado */
+}
+
+/* --- BOTÓN TOGGLE (FLECHA) --- */
+.toggle-btn {
+    position: fixed;
+    bottom: 25px;
+    left: 215px; /* Posición cuando está abierto */
+    z-index: 1100;
+    transition: all 0.3s ease;
+    
+    background: #141414;
+    border: 1px solid #333;
+    color: #00bcd4;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.toggle-btn:hover {
+    background: #00bcd4;
+    color: #141414;
+}
+
+.toggle-btn.closed-btn {
+    left: 12.5px; /* (60px sidebar - 35px botón) / 2 = 12.5px para centrarlo */
+}
+
+/* Cuando el link está activo */
+.nav-icons li a.active-link {
+    background: rgba(0, 188, 212, 0.15); /* Fondo cian muy sutil */
+    color: #00bcd4 !important;            /* Texto en cian */
+    border-left: 3px solid #00bcd4;      /* Una barrita lateral que resalta */
+}
+
+/* También queremos que el icono cambie de color dentro del link activo */
+.nav-icons li a.active-link .icon-box {
+    color: #00bcd4;
+    filter: drop-shadow(0 0 5px rgba(0, 188, 212, 0.5)); /* Efecto neón */
+}
+
+/* Si quieres que el texto también resalte más */
+.nav-icons li a.active-link .label-text {
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(0, 188, 212, 0.3);
+}
+
+/* ... (Todo tu CSS anterior del sidebar se mantiene igual) ... */
+
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    left: -250px; /* Escondido a la izquierda */
+    width: 250px !important; 
+    z-index: 2000; /* Por encima de todo */
+  }
+
+  /* Cuando NO tiene la clase .closed (es decir, está abierto) */
+  .sidebar:not(.closed) {
+    left: 0; /* Entra a la pantalla */
+  }
+
+  /* Ajuste del botón Toggle en móvil para que sea fácil de tocar */
+  .toggle-btn {
+    left: auto !important;
+    right: 20px !important;
+    bottom: 20px !important;
+    width: 55px;
+    height: 55px;
+    background: #00bcd4;
+    color: #141414;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 188, 212, 0.4);
+  }
+}

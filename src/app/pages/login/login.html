@@ -1,0 +1,41 @@
+<div class="login-container">
+  <div class="login-box shadow-glow">
+    <div class="text-center mb-4">
+      <i class="fa-solid fa-gamepad text-info display-3 mb-3"></i>
+      <h2 class="text-white fw-bold">BIENVENIDO GAMER</h2>
+      <p class="text-secondary">Ingresa a tu biblioteca personal</p>
+    </div>
+
+    <form (submit)="onSubmit($event)">
+      <div class="mb-3">
+        <label class="form-label text-white-50">Correo Electrónico</label>
+        <div class="input-group">
+          <span class="input-group-text bg-black border-secondary text-secondary">
+            <i class="fa-solid fa-envelope"></i>
+          </span>
+          <input type="email" class="form-control bg-black border-secondary text-white" 
+                 placeholder="ejemplo@correo.com" required name="email">
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label text-white-50">Contraseña</label>
+        <div class="input-group">
+          <span class="input-group-text bg-black border-secondary text-secondary">
+            <i class="fa-solid fa-lock"></i>
+          </span>
+          <input type="password" class="form-control bg-black border-secondary text-white" 
+                 placeholder="••••••••" required name="password">
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-info w-100 py-3 fw-bold rounded-pill mb-3">
+        INICIAR SESIÓN
+      </button>
+
+      <div class="text-center">
+        <a routerLink="/" class="text-secondary small text-decoration-none">Continuar como invitado</a>
+      </div>
+    </form>
+  </div>
+</div>

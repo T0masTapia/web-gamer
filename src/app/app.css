@@ -1,0 +1,73 @@
+/* --- DISEÑO PARA PC --- */
+.content {
+  margin-left: 60px; /* Sidebar cerrado */
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  padding: 30px;
+  min-height: 100vh;
+  background-color: #0d0d0d;
+}
+
+.content.shift {
+  margin-left: 250px; /* Sidebar abierto */
+}
+
+/* --- DISEÑO PARA CELULAR (WEB MÓVIL) --- */
+@media (max-width: 768px) {
+  .content {
+    margin-left: 0 !important; /* En móvil no hay margen izquierdo fijo */
+    width: 100%;
+    padding: 15px; /* Menos espacio en los bordes para aprovechar la pantalla */
+    padding-top: 20px;
+  }
+
+  .content.shift {
+    margin-left: 0 !important; /* Evitamos que el contenido se desplace y se salga de pantalla */
+    /*filter: blur(4px) brightness(0.5); /* Efecto de enfoque: oscurece el fondo cuando el menú abre */
+    pointer-events: none; /* No permite clickear el contenido si el menú está abierto */
+  }
+}
+
+/* Estilos para la barra inferior */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 65px;
+  background-color: #121212;
+  border-top: 1px solid #333;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 1000;
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.nav-item {
+  color: #888;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.nav-item i {
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+}
+
+/* Estado activo (donde estás parado) */
+.nav-item.active {
+  color: #00bcd4; /* Tu color cian */
+  text-shadow: 0 0 10px rgba(0, 188, 212, 0.5);
+}
+
+/* Ajuste para que el contenido no quede tapado por la barra en móvil */
+@media (max-width: 768px) {
+  .content {
+    margin-left: 0 !important;
+    padding-bottom: 80px; /* Espacio extra abajo para que la barra no tape nada */
+  }
+}

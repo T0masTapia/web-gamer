@@ -1,0 +1,266 @@
+/* --- LAYOUT GENERAL --- */
+.hero-layout {
+  background-color: #0d0d0d;
+  color: white;
+  min-height: 100vh;
+}
+
+/* --- BANNER PRINCIPAL --- */
+.hero-banner {
+  height: 80vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 100px;
+  position: relative;
+}
+
+.hero-info h1 {
+  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: 1;
+}
+
+/* --- BOTÓN VOLVER (GLASSMORPHISM) --- */
+.btn-back {
+  position: fixed;
+  top: 30px;
+  left: 30px;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  text-decoration: none;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10px 25px;
+  border-radius: 50px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.btn-back:hover {
+  background: #00bcd4;
+  color: black;
+  transform: translateX(-5px);
+  border-color: #00bcd4;
+}
+
+/* --- GRUPO DE COMPRA (PRECIO + BOTÓN) --- */
+.btn-group {
+  border-radius: 12px;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: stretch;
+  box-shadow: 0 0 20px rgba(0, 188, 212, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.btn-group:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 35px rgba(0, 188, 212, 0.5);
+}
+
+.price-badge {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #00bcd4;
+  padding: 0 25px;
+  font-size: 1.3rem;
+  font-weight: 800;
+  border: 2px solid #00bcd4;
+  border-right: none;
+  border-radius: 12px 0 0 12px;
+  display: flex;
+  align-items: center;
+}
+
+.btn-group .btn-info {
+  border-radius: 0 12px 12px 0 !important;
+  padding: 15px 30px;
+  background-color: #00bcd4;
+  border: 2px solid #00bcd4;
+  color: #000;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+/* --- MINI MODAL / POPOVER (LIMPIO Y PERSISTENTE) --- */
+.popover-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 2999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.popover-overlay.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.cart-confirm-popover {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  width: 500px;
+  background: rgba(18, 18, 18, 0.98);
+  border: 2px solid #00bcd4;
+  border-radius: 30px;
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.9), 0 0 30px rgba(0, 188, 212, 0.2);
+  z-index: 3000;
+  padding: 50px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cart-confirm-popover.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  pointer-events: all;
+}
+
+.btn-close-modal {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  color: #666;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-close-modal:hover {
+  color: #00bcd4;
+  transform: rotate(90deg);
+}
+
+.popover-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.popover-header i {
+  font-size: 4rem;
+  color: #00bcd4;
+  filter: drop-shadow(0 0 10px rgba(0, 188, 212, 0.5));
+}
+
+.popover-header span {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.popover-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 20px;
+  margin-bottom: 40px;
+}
+
+.mini-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.mini-title {
+  font-size: 1.5rem;
+  color: white;
+  font-weight: 700;
+  margin: 0;
+}
+
+.mini-price {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #00bcd4;
+}
+
+.popover-footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.btn-go-cart, .btn-continue {
+  padding: 15px;
+  border-radius: 50px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+}
+
+.btn-go-cart {
+  background: #00bcd4;
+  color: #0d0d0d;
+}
+
+.btn-continue {
+  background: #2a2a2a;
+  color: #aaa;
+}
+
+/* --- BOTÓN FLOTANTE (FLOATING CART) --- */
+.floating-cart {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  background: #00bcd4;
+  color: #0d0d0d;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  z-index: 1000;
+  transform: scale(0);
+  transition: all 0.3s ease;
+}
+
+.floating-cart.has-items {
+  transform: scale(1);
+}
+
+.cart-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #ff4757;
+  color: white;
+  font-size: 0.8rem;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-weight: bold;
+}

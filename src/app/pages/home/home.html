@@ -1,0 +1,20 @@
+<div class="search-area mb-5">
+  <div class="custom-search-box">
+    <div class="search-inner">
+      <i class="fa-solid fa-magnifying-glass search-icon"></i>
+      <input 
+        type="text" 
+        class="main-input" 
+        placeholder="Buscar en la biblioteca..." 
+        (input)="onSearch($event)"
+      >
+      <div class="glow-line"></div>
+    </div>
+  </div>
+</div>
+
+  <h1 class="text-white mb-4">Catálogo de Juegos</h1>
+
+  <div class="container-fluid p-0">
+    <app-game-list [searchTerm]="searchQuery" />
+  </div>

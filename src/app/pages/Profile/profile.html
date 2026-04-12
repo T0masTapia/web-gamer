@@ -1,0 +1,106 @@
+<div class="profile-layout container-fluid p-0">
+        <div class="profile-banner"></div>
+
+        <div class="container mt-n5 position-relative">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="user-card shadow-lg text-center p-4 rounded-4">
+                        <img [src]="user()?.avatar" alt="Avatar" class="avatar-img shadow-glow mb-3">
+                        <h2 class="text-white fw-bold mb-1">{{ user()?.name }}</h2>
+                        <p class="text-info mb-4">{{ user()?.email }}</p>
+
+                        <div class="d-grid gap-2">
+                            <!-- <button class="btn btn-outline-info rounded-pill">Editar Perfil</button> -->
+                            <button class="btn btn-outline-danger rounded-pill" (click)="logout()">Cerrar
+                                Sesión</button>
+                        </div>
+                    </div>
+
+                    <div class="stats-grid mt-4">
+                        <div class="stat-item bg-dark p-3 rounded-4 text-center border border-secondary">
+                            <span class="d-block text-secondary small">FAVORITOS</span>
+                            <span class="fs-3 fw-bold text-white">{{ favorites().length }}</span>
+                        </div>
+                        <div class="stat-item bg-dark p-3 rounded-4 text-center border border-secondary">
+                            <span class="d-block text-secondary small">CARRITO</span>
+                            <span class="fs-3 fw-bold text-white">{{ cartCount() }}</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Favoritos -->
+                <div class="col-lg-8">
+                    <div class="d-flex gap-3 mb-4 tabs-container">
+                        <button class="tab-btn" [class.active]="activeTab === 'biblioteca'"
+                            (click)="setTab('biblioteca')">
+                            <i class="fa-solid fa-gamepad me-2"></i>Mi Biblioteca
+                        </button>
+                        <button class="tab-btn" [class.active]="activeTab === 'favoritos'"
+                            (click)="setTab('favoritos')">
+                            <i class="fa-solid fa-heart me-2"></i>Favoritos
+                        </button>
+                    </div>
+
+                    <div class="content-card p-4 rounded-4 shadow-sm">
+
+                        @if (activeTab === 'biblioteca') {
+                        <h3 class="text-white mb-4 border-bottom border-secondary pb-3 fs-5">Juegos Adquiridos</h3>
+
+                        @if (library().length > 0) {
+                        <div class="row g-4">
+                            @for (game of library(); track game.id) {
+                            <div class="col-6 col-md-4 col-lg-3">
+                                <div class="library-item text-center">
+                                    <div class="position-relative overflow-hidden rounded-3 mb-2 shadow">
+                                        <img [src]="game.img" class="img-fluid library-img">
+                                        <div class="library-overlay">
+                                            <button class="btn btn-sm btn-info fw-bold">JUGAR</button>
+                                        </div>
+                                    </div>
+                                    <p class="text-white small fw-bold mb-0 text-truncate">{{ game.title }}</p>
+                                </div>
+                            </div>
+                            }
+                        </div>
+                        } @else {
+                        <div class="text-center py-5">
+                            <i class="fa-solid fa-box-open display-1 text-secondary opacity-25 mb-3"></i>
+                            <p class="text-secondary">Tu biblioteca está vacía.</p>
+                        </div>
+                        }
+                        }
+
+                        @if (activeTab === 'favoritos') {
+                        <h3 class="text-white mb-4 border-bottom border-secondary pb-3 fs-5">Lista de Deseos</h3>
+
+                        @if (favorites().length > 0) {
+                        <div class="row g-3">
+                            @for (game of favorites(); track game.id) {
+                            <div class="col-md-6">
+                                <div class="fav-game-card d-flex align-items-center p-2 rounded-3">
+                                    <img [src]="game.img" class="rounded me-3"
+                                        style="width: 80px; height: 45px; object-fit: cover;">
+                                    <div class="flex-grow-1">
+                                        <p class="text-white m-0 small fw-bold">{{ game.title }}</p>
+                                        <small class="text-secondary">{{ game.platform }}</small>
+                                    </div>
+                                    <button class="btn btn-link text-danger" (click)="eliminarFavorito(game)">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            }
+                        </div>
+                        } @else {
+                        <div class="text-center py-5">
+                            <i class="fa-solid fa-heart-crack display-1 text-secondary opacity-25 mb-3"></i>
+                            <p class="text-secondary">No tienes favoritos guardados.</p>
+                        </div>
+                        }
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>

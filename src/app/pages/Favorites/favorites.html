@@ -1,0 +1,33 @@
+<div class="container-fluid ps-3 pe-3 pt-2 pb-5"> 
+    <div class="d-flex align-items-center mb-4 border-bottom border-secondary pb-3">
+        <i class="fa-solid fa-heart text-danger fs-2 fs-md-1 me-2"></i>
+        <h1 class="text-white fw-bold mb-0 fs-3 fs-md-1">Mis Favoritos</h1>
+    </div>
+
+    @if (favs().length > 0) {
+        <div class="row g-3 g-lg-4"> 
+            @for (game of favs(); track game.id) {
+                <div class="col-12 col-sm-6 col-md-4 col-xl-3">
+                    <game-card
+                        [id]="game.id"
+                        [title]="game.title"
+                        [platform]="game.platform"
+                        [img]="game.img"
+                        class="h-100 w-100"
+                    />
+                </div>
+            }
+        </div>
+    } @else {
+        <div class="empty-state text-center py-5 mt-5">
+            <div class="mb-4">
+                <i class="fa-regular fa-heart text-secondary" style="font-size: clamp(3rem, 10vw, 5rem); opacity: 0.3;"></i>
+            </div>
+            <h3 class="text-white-50">Tu lista está vacía</h3>
+            <p class="text-secondary mb-4">Explora el catálogo y guarda los juegos que más te gusten.</p>
+            <a routerLink="/" class="btn btn-outline-info px-4 rounded-pill shadow-sm">
+                <i class="fa-solid fa-arrow-left me-2"></i>Ir al Catálogo
+            </a>
+        </div>
+    }
+</div>

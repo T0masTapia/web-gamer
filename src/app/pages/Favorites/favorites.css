@@ -1,0 +1,40 @@
+.content {
+  /* Mantenemos el margen dinámico para el sidebar */
+  margin-left: 60px; 
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  
+  /* REDUCIMOS ESTO: Si dejas 30px aquí + ps-3 en el HTML, 
+     el contenido se verá muy lejos de la orilla */
+  padding: 10px 0; 
+  
+  background-color: #0d0d0d;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content.shift {
+  margin-left: 250px; 
+}
+
+/* --- MEJORAS DE RESPONSIVIDAD --- */
+@media (max-width: 768px) {
+  .content {
+    margin-left: 0 !important; 
+    padding: 5px 0; /* Casi nada de padding, el HTML ya tiene ps-3 */
+  }
+  
+  .content.shift {
+    margin-left: 0 !important;
+    /* Efecto visual de "menú abierto" en móvil */
+    filter: brightness(0.4) blur(2px); 
+    pointer-events: none;
+    overflow: hidden; /* Evita que el usuario haga scroll mientras el menú está abierto */
+  }
+}
+
+/* ESTO ASEGURA QUE LAS CARDS SE VEAN BIEN SIEMPRE */
+.row {
+  margin-right: 0;
+  margin-left: 0;
+}
